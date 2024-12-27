@@ -13,19 +13,94 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #333;
         }
         .container {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1);
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #74ebd5;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: #74ebd5;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background: #67d3c5;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
         }
         .message {
             margin-top: 20px;
             font-size: 18px;
+            animation: fade-in 0.5s ease forwards;
+        }
+        .message.error {
+            color: red;
+            animation: shake 0.5s ease;
+        }
+        .message.success {
             color: green;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-10px);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
@@ -46,9 +121,10 @@
 
             if (userGuess === correctAnswer) {
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
+                messageDiv.className = "message success";
             } else {
                 messageDiv.textContent = "Che ghey che sei... riprova!";
-                messageDiv.style.color = "red";
+                messageDiv.className = "message error";
             }
         }
     </script>
