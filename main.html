@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Indovina la parola segreta</h1>
+        <p>Inserisci la parola nel campo sottostante:</p>
+        <input type="text" id="guess" placeholder="Scrivi qui..." />
+        <button onclick="checkGuess()">Conferma</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function checkGuess() {
+            const correctAnswer = "de paul";
+            const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+            const messageDiv = document.getElementById("message");
+
+            if (userGuess === correctAnswer) {
+                messageDiv.textContent = "Congratulazioni! Ecco il codice: B9MX-QH7A-GPE9";
+            } else {
+                messageDiv.textContent = "Parola errata. Riprova!";
+                messageDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
