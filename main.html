@@ -114,6 +114,12 @@
             width: 300px;
             border-radius: 10px;
         }
+        .gif2 {
+            display: none;
+            margin: 20px auto 0 auto; /* Margine superiore e centratura automatica */
+            width: 300px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +131,7 @@
         <button onclick="checkGuess()">Conferma</button>
         <div id="message" class="message"></div>
         <img id="gif" class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc29majhjdzBieGZqcnlwNnM1YTJ5eGcxMm9pbGlhYnlzNXRpOG94OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JBjboimLcWFukn5JTT/giphy.gif" alt="Rodrigo De Paul che esulta">
+        <img id="gif2" class="gif2" src="https://media.giphy.com/media/NRgzBl3nIPscw/giphy.gif?cid=790b7611ydvcosvg9e5tdpkgh8towt8aist49csdr9axiwix&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="ghey">
     </div>
 
     <script>
@@ -167,15 +174,18 @@
             const userGuess = document.getElementById("guess").value.trim().toLowerCase();
             const messageDiv = document.getElementById("message");
             const gif = document.getElementById("gif");
+            const gif2 = document.getElementById("gif2");
 
             if (userGuess === correctAnswer) {
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
                 messageDiv.className = "message success";
                 gif.style.display = "block";
+                gif2.style.display = "none";
                 drawConfetti();
             } else {
                 messageDiv.textContent = "Che ghey... riprova!";
                 messageDiv.className = "message error";
+                gif2.style.display = "block";
                 gif.style.display = "none";
             }
         }
