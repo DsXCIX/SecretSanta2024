@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Santa Villachers 2024</title>
+    <title>QR Code Guessing Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,6 +113,10 @@
             margin-top: 20px;
             width: 300px;
             border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -124,7 +128,7 @@
         <input type="text" id="guess" placeholder="Scrivi qui..." />
         <button onclick="checkGuess()">Conferma</button>
         <div id="message" class="message"></div>
-        <img id="gif" class="gif" src="https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif" alt="Rodrigo De Paul che esulta">
+        <img id="gif" class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc29majhjdzBieGZqcnlwNnM1YTJ5eGcxMm9pbGlhYnlzNXRpOG94OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JBjboimLcWFukn5JTT/giphy.gif" alt="Rodrigo De Paul che esulta">
     </div>
 
     <script>
