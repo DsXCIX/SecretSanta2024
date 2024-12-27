@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Santa Game Villachers 2024e</title>
+    <title>Secret Santa Game Villachers 2024</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -172,6 +172,7 @@
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
                 messageDiv.className = "message success";
                 gif.style.display = "block";
+                messageDiv.appendChild(gif);
                 drawConfetti();
             } else {
                 messageDiv.textContent = "Che ghey... riprova!";
