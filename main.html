@@ -176,6 +176,7 @@
             const gif = document.getElementById("gif");
             const gif2 = document.getElementById("gif2");
             const title = document.querySelector("h1");  // Seleziona l'elemento h1
+            const instruction = document.querySelector("p"); // Seleziona il paragrafo con le istruzioni
 
             if (userGuess === correctAnswer) {
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
@@ -183,6 +184,7 @@
                 gif.style.display = "block";
                 gif2.style.display = "none";
                 title.textContent = "RODRIGOOOO DE PAULLLL";  // Cambia il contenuto del titolo
+                instruction.style.display = "none";  // Nascondi le istruzioni
                 drawConfetti();
             } else {
                 messageDiv.textContent = "Che ghey... riprova!";
