@@ -110,7 +110,7 @@
         }
         .gif {
             display: none;
-            margin-top: 20px;
+            margin: 20px auto 0 auto; /* Margine superiore e centratura automatica */
             width: 300px;
             border-radius: 10px;
         }
@@ -172,7 +172,6 @@
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
                 messageDiv.className = "message success";
                 gif.style.display = "block";
-                messageDiv.appendChild(gif);
                 drawConfetti();
             } else {
                 messageDiv.textContent = "Che ghey... riprova!";
