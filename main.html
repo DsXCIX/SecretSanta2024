@@ -72,7 +72,15 @@
             color: green;
             animation: bounce 0.5s ease;
         }
-
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
         @keyframes fade-in {
             from {
                 opacity: 0;
@@ -81,7 +89,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes shake {
             0%, 100% {
                 transform: translateX(0);
@@ -93,7 +100,6 @@
                 transform: translateX(10px);
             }
         }
-
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -102,29 +108,75 @@
                 transform: translateY(-10px);
             }
         }
+        .gif {
+            display: none;
+            margin-top: 20px;
+            width: 300px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
+    <canvas id="confetti"></canvas>
     <div class="container">
         <h1>SE IL TUO VERO REGALO VUOI SBLOCCARE IL GIOCATORE A CUI HO RUBATO GLI OVERALL PER IL TUO QUADRO DEVI INDOVINARE...</h1>
         <p>Inserisci il suo nome nel campo sottostante e premi il tasto conferma:</p>
         <input type="text" id="guess" placeholder="Scrivi qui..." />
         <button onclick="checkGuess()">Conferma</button>
         <div id="message" class="message"></div>
+        <img id="gif" class="gif" src="https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif" alt="Rodrigo De Paul che esulta">
     </div>
 
     <script>
+        const confettiCanvas = document.getElementById("confetti");
+        const confettiCtx = confettiCanvas.getContext("2d");
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        function createConfetti() {
+            const confettiPieces = [];
+            for (let i = 0; i < 100; i++) {
+                confettiPieces.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    speed: Math.random() * 2 + 1,
+                    radius: Math.random() * 4 + 1,
+                });
+            }
+            return confettiPieces;
+        }
+
+        let confetti = createConfetti();
+
+        function drawConfetti() {
+            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confetti.forEach(p => {
+                confettiCtx.beginPath();
+                confettiCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                confettiCtx.fillStyle = p.color;
+                confettiCtx.fill();
+                p.y += p.speed;
+                if (p.y > confettiCanvas.height) p.y = -p.radius;
+            });
+            requestAnimationFrame(drawConfetti);
+        }
+
         function checkGuess() {
             const correctAnswer = "de paul";
             const userGuess = document.getElementById("guess").value.trim().toLowerCase();
             const messageDiv = document.getElementById("message");
+            const gif = document.getElementById("gif");
 
             if (userGuess === correctAnswer) {
                 messageDiv.textContent = "Congratulazioni! Ecco la tua PSN card da 25 euro: B9MX-QH7A-GPE9";
                 messageDiv.className = "message success";
+                gif.style.display = "block";
+                drawConfetti();
             } else {
                 messageDiv.textContent = "Che ghey che sei... riprova!";
                 messageDiv.className = "message error";
+                gif.style.display = "none";
             }
         }
     </script>
